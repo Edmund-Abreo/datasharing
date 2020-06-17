@@ -1,0 +1,142 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "BookStore",
+    "x-lastModified": "17 June 2020 1:03:09 pm (India Standard Time)"
+  },
+  "paths": {
+    "/books/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/BookSchema"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": "",
+            "default": "pc"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "getBooks_id"
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/POSTResponseSchema"
+            },
+            "examples": {
+              "application/json": {
+                "internalID": "1234AAX",
+                "title": "My new book"
+              }
+            }
+          },
+          "404": {
+            "description": "The resource was not found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Page not found"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BookSchema"
+            }
+          }
+        ],
+        "operationId": "postBooks_id",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "BookSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "default": "My new book"
+        },
+        "author": {
+          "type": "string",
+          "default": "Leon Stigter"
+        },
+        "description": {
+          "type": "string",
+          "default": "A new cool book on APIs"
+        },
+        "price": {
+          "type": "number",
+          "default": 29.95
+        }
+      }
+    },
+    "POSTResponseSchema": {
+      "type": "object",
+      "properties": {
+        "internalID": {
+          "type": "string",
+          "default": "1234AAX"
+        },
+        "title": {
+          "type": "string",
+          "default": "My new book"
+        }
+      }
+    },
+    "Resource Not Found": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "default": "Page not found"
+        }
+      }
+    }
+  }
+}
